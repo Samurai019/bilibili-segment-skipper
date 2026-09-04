@@ -1,0 +1,16 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# System
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
