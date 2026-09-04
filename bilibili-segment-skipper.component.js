@@ -30,9 +30,9 @@ const component = {
     },
   },
   entry: async ({ metadata, settings }) => {
-    // 注入组件专用 CSS 样式 (适配 Bilibili-Evolved 主题变量，精准对齐控制栏)
+    // 注入组件专用 CSS 样式 (自适应常规模式、网页全屏与窗口全屏模式)
     const STYLES = `
-      /* 播放器控制栏内嵌按钮 (严格匹配 B 站原生 22px 顶端对齐规范) */
+      /* 播放器控制栏内嵌按钮 (常规模式：22px 顶端对齐) */
       .bvss-ctrl-btn {
         display: flex !important;
         align-items: center !important;
@@ -62,6 +62,19 @@ const component = {
         display: block !important;
         margin: auto !important;
         pointer-events: none;
+      }
+
+      /* 网页全屏 (web) 与 桌面全屏 (full) 模式自适应：B 站控件在此模式下高度为 32px */
+      .bpx-player-container[data-screen="web"] .bvss-ctrl-btn,
+      .bpx-player-container[data-screen="full"] .bvss-ctrl-btn {
+        height: 32px !important;
+        line-height: 32px !important;
+        min-width: 36px !important;
+      }
+      .bpx-player-container[data-screen="web"] .bvss-ctrl-btn svg,
+      .bpx-player-container[data-screen="full"] .bvss-ctrl-btn svg {
+        width: 22px !important;
+        height: 22px !important;
       }
 
       /* 控制栏弹出面板 (嵌入式下拉菜单风格) */
@@ -660,13 +673,11 @@ const component = {
           togglePopup();
         };
 
-        // 紧贴清晰度按钮左侧插入
         ctrlRight.insertBefore(btn, anchor);
 
         const playerWrap = document.querySelector('.bpx-player-container, .bilibili-player-area') || ctrlRight;
         createPopupPanel(playerWrap);
       } else if (btn.parentElement !== ctrlRight || btn.nextElementSibling !== anchor) {
-        // 确保换P或播放器重建后位置始终准确停留在清晰度前
         ctrlRight.insertBefore(btn, anchor);
       }
     }
