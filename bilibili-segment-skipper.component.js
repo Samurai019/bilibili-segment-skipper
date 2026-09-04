@@ -1,6 +1,7 @@
 // ==Bilibili-Evolved Component==
 // @name         videoSegmentSkipper
 // @displayName  视频片段标记与自动跳过
+// @version      1.0.1
 // @description  为视频标记指定片段（如片头、片尾、广告赞助等），在播放时自动跳过。设置无缝集成进 Bilibili-Evolved 面板，控制按钮内嵌至播放器控制栏。
 // @author       Antigravity
 // ==/Bilibili-Evolved Component==
@@ -8,6 +9,7 @@
 const component = {
   name: 'videoSegmentSkipper',
   displayName: '视频片段标记与自动跳过',
+  version: '1.0.1',
   description: '标记视频中的特定片段并在播放时自动跳过，支持控制栏原生按钮、快捷键打点与进度条可视化标记。',
   tags: typeof componentsTags !== 'undefined' && componentsTags.video ? [componentsTags.video] : [],
   // Bilibili-Evolved 设置面板中的选项定义
